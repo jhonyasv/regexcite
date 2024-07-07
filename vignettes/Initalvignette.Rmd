@@ -1,0 +1,33 @@
+---
+title: "Initalvignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Initalvignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## from R data file
+
+Let's use the function to split the abstract from a paper into every single word by using the str_split_one function with the pattern " ". This mean that you'll obtain a list of words that are separated by spaces. In this example the data is retrieved from an internal file from the package.
+
+```{r}
+library(regexcite)
+x<-regexcite::testData
+str_split_one(x[1,1], pattern = " ")
+```
+## "external" dataset
+
+Now we're repeating the process for other different paragraph, the difference this time is that we're using an external CSV file.
+```{r}
+library(regexcite)
+x<-read.csv(system.file("extdata", "TestCSV.csv", package = "regexcite"), header = FALSE)
+str_split_one(x[1,1], pattern = " ")
+```
